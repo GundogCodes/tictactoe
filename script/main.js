@@ -104,6 +104,8 @@
 		]
 	}
 	const winAmount = 3;
+	const xColor = '#D62828'
+	const oColor = '#FCBF49'
 	
 
 	/*----- state variables -----*/
@@ -158,7 +160,10 @@ function handleClick(event){
 	const boxId = `c${colIdx}r${rowIdx}`
 	const cellEl = document.getElementById(boxId)
 	cellEl.setAttribute('id','cellEl')
-		cellEl.innerHTML = `<h1>${PLAYERS[rowVal]}</h1>`
+	cellEl.innerHTML = `<h1>${PLAYERS[rowVal]}</h1>`
+	if(turn === 1){cellEl.style.color = xColor} else{
+		cellEl.style.color = oColor
+	}
 	turn = turn*-1
 	renderMessage()
 	winner = getWinner(board,colIdx,rowIdx,rowVal)
@@ -167,9 +172,9 @@ function handleClick(event){
 }
 
 function getWinner(board,colIdx,rowIdx,rowVal){
-	console.log(`	col idx ${colIdx}
-					row idx ${rowIdx}	
-					row cal ${rowVal}`)
+	console.log(`col idx ${colIdx}
+row idx ${rowIdx}	
+row cal ${rowVal}`)
 	checkVertical(board,colIdx,rowIdx,rowVal)
 	checkHorizontal(board,colIdx,rowIdx,rowVal)
 	
@@ -193,11 +198,11 @@ function renderMessage(){
         messageEl.innerHTML = `${PLAYERS[turn]}Wins!!`
         
     } else {
-        messageEl.innerHTML = `${PLAYERS[turn].toUpperCase()}'s Turn`
+        messageEl.innerHTML = `${PLAYERS[turn].toUpperCase()}<span>'s Turn</span>`
 		if(turn === 1){
-			messageEl.style.color = 'pink'
+			messageEl.style.color = xColor
 		} else if (turn === -1){
-			messageEl.style.color = 'green'
+			messageEl.style.color = oColor
 		}
 
 }

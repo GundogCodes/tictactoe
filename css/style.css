@@ -1,4 +1,5 @@
 body {
+    font-family: 'Bruno Ace', cursive;
     height: 100vh;
     width: 100vw;
     background-color:black;
@@ -15,38 +16,79 @@ body {
     display: grid;
     grid-template-columns: repeat(3,20vmin);
     grid-template-rows: repeat(3,20vmin);
-    background-color: rgb(29, 29, 96);
+    background-color:#003049;
     gap:1vmin;
     margin:2vmin;
+   
 }
 
 #board > div{
     height: 20vmin;
     width: 20vmin;
-    border-style: solid;
-    
+    border-style: groove;
     
 }
 
 button{
-color:white;
-border-radius: 25%;
-background-color: black;
+font-size: 25px;
+margin-top: 2vmin;
+padding:2vmin;
+color:black;
+border-radius: 15%;
+background-color: white;
+font-family: 'Bruno Ace', cursive;
 }
 
 button:hover{
+    font-size: 50px;
+    transition: 140ms;
     cursor: pointer;
     background-color: palevioletred;
-    color: black;
+    color: white;
 }
 
 #cellEl{
     text-align: center;
     font-size: 50px;
-    margin-bottom: 30px;
+    
+    font-family: 'Bruno Ace', cursive;
 }
 
 #message{
     color: white;
     text-align: center;
+    font-family: 'Bruno Ace', cursive;
+}
+
+span{
+    color:white;
+}
+
+#tic{
+    color:#D62828
+}
+#tac{
+    color:white;
+}
+
+#toe{
+    color:#FCBF49;
+}
+
+#tic:hover{
+    font-size: 40px;
+    transition: 140ms;
+  
+}
+
+#tac:hover{
+    font-size: 40px;
+    transition: 140ms;
+  
+}
+
+#toe:hover{
+    font-size: 40px;
+    transition: 140ms;
+  
 }
