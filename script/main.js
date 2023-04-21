@@ -141,8 +141,6 @@ function init(){
 }
 
 function render(){
-	renderBoard()
-	renderMessage()
 	renderControls()
 }
 
@@ -159,39 +157,39 @@ function handleClick(event){
 	collArr[rowIdx] = turn
 	const boxId = `c${colIdx}r${rowIdx}`
 	const cellEl = document.getElementById(boxId)
+	cellEl.setAttribute('id','cellEl')
 		cellEl.innerHTML = `<h1>${PLAYERS[rowVal]}</h1>`
 	turn = turn*-1
-	winner = getWinner(board)
-
-		
-}
-
-function getWinner(board){
-	checkVertical(board)
-
-
-}
-
-
-
-function renderBoard(){
-	board.forEach(function(collArr,colIdx){
-		collArr.forEach(function(rowVal,rowIdx){
-			
-			const boxId = `c${colIdx}r${rowIdx}`
-			
-			const cellEl = document.getElementById(boxId)
-			cellEl.innerHTML = `<h1>${PLAYERS[rowVal]}</h1>`
-		})
-	})
+	renderMessage()
+	winner = getWinner(board,colIdx,rowIdx,rowVal)
+	
 	
 }
 
-function renderMessage(){
+function getWinner(board,colIdx,rowIdx,rowVal){
+	console.log(`	col idx ${colIdx}
+					row idx ${rowIdx}	
+					row cal ${rowVal}`)
+	checkVertical(board,colIdx,rowIdx,rowVal)
+	checkHorizontal(board,colIdx,rowIdx,rowVal)
+	
+	
+}
 
+function checkVertical(board,colIdx,rowIdx,rowVal){
+	
+}
+
+function checkHorizontal(board,colIdx,rowIdx,rowVal){
+
+}
+
+function renderMessage(){
+	
+	console.log(turn)
 	if(winner === 'T'){
         messageEl.innerText = "IT's A TIE!!!"
-    } else if (winner){
+    } else if (winner === 1 || winner === -1){
         messageEl.innerHTML = `${PLAYERS[turn]}Wins!!`
         
     } else {
