@@ -1,9 +1,4 @@
 	/*----- constants -----*/
-	const PLAYERS = {
-		'0':' ',
-		'1':'x',
-		'-1':'o'
-	}
 
 	const winningCombos = {
 		1:[
@@ -103,7 +98,14 @@
 		//	r0 r1 r2
 		]
 	}
-	const winAmount = 3;
+
+	const PLAYERS = {
+		'0':' ',
+		'1':'x',
+		'-1':'o'
+	}
+
+	const winAmount = 2
 	const xColor = '#D62828'
 	const oColor = '#FCBF49'
 	
@@ -114,22 +116,26 @@
 	let board;
 
 
+
 	/*----- cached elements  -----*/
 	const playAgainBtn = document.querySelector('button')
-	const boxEls = document.querySelectorAll('section > div')
+	const boxEls = [...document.querySelectorAll('#board > div')]
 	const messageEl  = document.querySelector('h3')
 	//console.log(boxEls)
 	/*----- event listeners -----*/
 	playAgainBtn.addEventListener('click',init)
-	let buttonBox = []
-	for(let box of boxEls){
+
+	//document.querySelector('#board > div').addEventListener('click',handleClick)
+	boxEls.forEach(function(box){
 		box.addEventListener('click',handleClick)
-	}
+	})
+	
 
 
 	/*----- functions -----*/
-	init()
+init()
 function init(){
+
 	turn = 1
 	winner = null
 	board = [
@@ -140,62 +146,77 @@ function init(){
 	]
 	
 	render()
+	
 }
 
 function render(){
+
+	renderMessage()
 	renderControls()
+	
 }
 
 
-function handleClick(event){
-	
-	const clickedBox = event.currentTarget.getAttribute('id')
-	//console.log(clickedBox)
+function handleClick(e){
+	//update board
+	const clickedBox = e.currentTarget.getAttribute('id')
 	const colIdx = clickedBox[1]
 	const rowIdx = clickedBox[3]
-	//console.log(colIdx,rowIdx)
-	const collArr = board[colIdx]
-	rowVal = turn
-	collArr[rowIdx] = turn
-	const boxId = `c${colIdx}r${rowIdx}`
-	const cellEl = document.getElementById(boxId)
-	cellEl.setAttribute('id','cellEl')
-	cellEl.innerHTML = `<h1>${PLAYERS[rowVal]}</h1>`
-	if(turn === 1){cellEl.style.color = xColor} else{
-		cellEl.style.color = oColor
+	console.log(colIdx,rowIdx,'turn: ', turn)
+	const colArr = board[colIdx]
+	console.log(board)
+	colArr[rowIdx] = turn
+	rowVal  = turn
+	board[colIdx][rowIdx] = rowVal
+	
+	console.log('this is row val',rowVal)
+	console.log(' PLAYERS RowVal',PLAYERS[rowVal])
+
+	
+	const boxEl = document.getElementById(clickedBox)
+	boxEl.innerHTML =`<h1>${PLAYERS[turn]}</h1>`
+	boxEl.setAttribute('id','boxEl')
+	if(rowVal ===1){
+		boxEl.style.color = xColor
+	} else if(rowVal === -1){
+		boxEl.style.color = oColor
 	}
-	turn = turn*-1
-	renderMessage()
-	winner = getWinner(board,colIdx,rowIdx,rowVal)
+
+	turn = turn *-1
+	render()
 	
 	
+
 }
 
 function getWinner(board,colIdx,rowIdx,rowVal){
 	console.log(`col idx ${colIdx}
 row idx ${rowIdx}	
-row cal ${rowVal}`)
+row val(turn) ${rowVal}`)
 	checkVertical(board,colIdx,rowIdx,rowVal)
 	checkHorizontal(board,colIdx,rowIdx,rowVal)
 	
 	
 }
 
-function checkVertical(board,colIdx,rowIdx,rowVal){
+function checkVertical(board,colIdx,rowIdx){
 	
 }
 
-function checkHorizontal(board,colIdx,rowIdx,rowVal){
-
+function checkHorizontal(board,colIdx,rowIdx){
+	
+	
 }
+
+
 
 function renderMessage(){
 	
-	console.log(turn)
+	//console.log(turn)
 	if(winner === 'T'){
         messageEl.innerText = "IT's A TIE!!!"
     } else if (winner === 1 || winner === -1){
-        messageEl.innerHTML = `${PLAYERS[turn]}Wins!!`
+        messageEl.innerHTML = `${PLAYERS[winner]}Wins!!`
         
     } else {
         messageEl.innerHTML = `${PLAYERS[turn].toUpperCase()}<span>'s Turn</span>`
@@ -214,3 +235,14 @@ function renderControls(){
 }
 
 
+
+
+
+
+function renderBoard(){
+	
+   
+	
+  
+}
+ 
