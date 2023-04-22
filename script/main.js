@@ -114,6 +114,7 @@
 	let turn;
 	let winner;
 	let board;
+	let clickedBox;
 
 
 
@@ -150,7 +151,7 @@ function init(){
 }
 
 function render(){
-
+	
 	renderMessage()
 	renderControls()
 	
@@ -180,13 +181,12 @@ function handleClick(e){
 		boxEl.style.color = xColor
 	} else if(rowVal === -1){
 		boxEl.style.color = oColor
+	} else if(rowVal === 0){
+		boxEl.style.color = 'white'
 	}
-
+	
 	turn = turn *-1
-	render()
-	
-	
-
+	renderMessage()
 }
 
 function getWinner(board,colIdx,rowIdx,rowVal){
@@ -211,14 +211,19 @@ function checkHorizontal(board,colIdx,rowIdx){
 
 
 function renderMessage(){
-	
+	console.log(turn)
 	//console.log(turn)
 	if(winner === 'T'){
         messageEl.innerText = "IT's A TIE!!!"
     } else if (winner === 1 || winner === -1){
-        messageEl.innerHTML = `${PLAYERS[winner]}Wins!!`
-        
+        messageEl.innerHTML = `${PLAYERS[winner].toUpperCase()} WINS!`
+		if(winner === 1){
+			messageEl.style.color = xColor
+		} else if (winner === -1){
+			messageEl.style.color = oColor
+		}
     } else {
+		console.log('turnnnnnn',turn)
         messageEl.innerHTML = `${PLAYERS[turn].toUpperCase()}<span>'s Turn</span>`
 		if(turn === 1){
 			messageEl.style.color = xColor
@@ -229,20 +234,20 @@ function renderMessage(){
 }
 }
 
-
 function renderControls(){
 	playAgainBtn.style.visibility = winner ? 'visible':  'hidden'
 }
 
-
-
-
-
-
-function renderBoard(){
-	
-   
-	
-  
-}
- 
+// function renderBoard(clickedBox){
+// 	const boxEl = document.getElementById(clickedBox)
+// 	boxEl.innerHTML =`<h1>${PLAYERS[turn]}</h1>`
+// 	boxEl.setAttribute('id','boxEl')
+// 	if(turn ===1){
+// 		boxEl.style.color = xColor
+// 	} else if(turn === -1){
+// 		boxEl.style.color = oColor
+		
+// 	} else if (turn === 0){
+// 		boxEl.style.color = ''
+// 	}
+// }
