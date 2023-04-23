@@ -114,13 +114,14 @@
 	let turn;
 	let winner;
 	let board;
-	let clickedBox;
+
 
 
 
 	/*----- cached elements  -----*/
 	const playAgainBtn = document.querySelector('button')
 	const boxEls = [...document.querySelectorAll('#board > div')]
+	console.log(boxEls)
 	const messageEl  = document.querySelector('h3')
 	//console.log(boxEls)
 	/*----- event listeners -----*/
@@ -151,7 +152,7 @@ function init(){
 }
 
 function render(){
-	
+	renderBoard()
 	renderMessage()
 	renderControls()
 	
@@ -163,20 +164,20 @@ function handleClick(e){
 	const clickedBox = e.currentTarget.getAttribute('id')
 	const colIdx = clickedBox[1]
 	const rowIdx = clickedBox[3]
-	console.log(colIdx,rowIdx,'turn: ', turn)
+	console.log('clickedBox',clickedBox,colIdx,rowIdx,'turn: ', turn)
 	const colArr = board[colIdx]
-	console.log(board)
+	//console.log(board)
 	colArr[rowIdx] = turn
 	rowVal  = turn
 	board[colIdx][rowIdx] = rowVal
 	
 	console.log('this is row val',rowVal)
 	console.log(' PLAYERS RowVal',PLAYERS[rowVal])
-
+	//renderBoard()
 	
 	const boxEl = document.getElementById(clickedBox)
 	boxEl.innerHTML =`<h1>${PLAYERS[turn]}</h1>`
-	boxEl.setAttribute('id','boxEl')
+	
 	if(rowVal ===1){
 		boxEl.style.color = xColor
 	} else if(rowVal === -1){
@@ -211,8 +212,7 @@ function checkHorizontal(board,colIdx,rowIdx){
 
 
 function renderMessage(){
-	console.log(turn)
-	//console.log(turn)
+	
 	if(winner === 'T'){
         messageEl.innerText = "IT's A TIE!!!"
     } else if (winner === 1 || winner === -1){
@@ -223,7 +223,7 @@ function renderMessage(){
 			messageEl.style.color = oColor
 		}
     } else {
-		console.log('turnnnnnn',turn)
+		
         messageEl.innerHTML = `${PLAYERS[turn].toUpperCase()}<span>'s Turn</span>`
 		if(turn === 1){
 			messageEl.style.color = xColor
@@ -238,16 +238,22 @@ function renderControls(){
 	playAgainBtn.style.visibility = winner ? 'visible':  'hidden'
 }
 
-// function renderBoard(clickedBox){
-// 	const boxEl = document.getElementById(clickedBox)
-// 	boxEl.innerHTML =`<h1>${PLAYERS[turn]}</h1>`
-// 	boxEl.setAttribute('id','boxEl')
-// 	if(turn ===1){
-// 		boxEl.style.color = xColor
-// 	} else if(turn === -1){
-// 		boxEl.style.color = oColor
-		
-// 	} else if (turn === 0){
-// 		boxEl.style.color = ''
-// 	}
-// }
+function renderBoard(){
+	board.forEach(function(colArr,colIdx){
+		colArr.forEach(function(rowVal,rowIdx){
+			const boxId = `c${colIdx}r${rowIdx}`
+			const boxEl = document.getElementById(boxId)
+			boxEl.innerHTML = `<h1>${PLAYERS[rowVal]}</h1>`
+			if(rowVal ===1){
+				boxEl.style.color = xColor
+			} else if(rowVal === -1){
+				boxEl.style.color = oColor
+			} else if(rowVal === 0){
+				boxEl.style.color = 'white'
+			}
+			
+
+		})
+	})
+
+}
