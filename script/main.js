@@ -173,18 +173,10 @@ function handleClick(e){
 	
 	console.log('this is row val',rowVal)
 	console.log(' PLAYERS RowVal',PLAYERS[rowVal])
-	//renderBoard()
 	
-	const boxEl = document.getElementById(clickedBox)
-	boxEl.innerHTML =`<h1>${PLAYERS[turn]}</h1>`
+	renderBoard()
 	
-	if(rowVal ===1){
-		boxEl.style.color = xColor
-	} else if(rowVal === -1){
-		boxEl.style.color = oColor
-	} else if(rowVal === 0){
-		boxEl.style.color = 'white'
-	}
+
 	
 	turn = turn *-1
 	renderMessage()
