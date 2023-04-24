@@ -8,7 +8,7 @@
 		'-1':'o'
 	}
 
-	const winAmount = 2
+	const winAmount = 3
 	const xColor = '#D62828'
 	const oColor = '#FCBF49'
 	
@@ -266,7 +266,7 @@
 		
 		oPointsEl.innerHTML = oPoints
 		oPointsEl.style.color = oColor
-		if(xPoints ===3 || oPoints ===3){
+		if(xPoints ===winAmount || oPoints ===winAmount){
 			gameWinner = true
 			renderControls()
 		}
