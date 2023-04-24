@@ -11,7 +11,9 @@ body {
 
 }
 
-
+.display{
+    display: inline-flex;
+}
 
 #board{
     display: grid;
@@ -116,4 +118,19 @@ span{
 p{
     text-align: center;
     font-size: 5vmin;
+}
+
+#xPointsDiv{
+    padding: 15vmin;
+    display: inline;
+    color:white;
+    
+    
+}
+#oPointsDiv{
+    padding: 15vmin;
+    display: inline;
+    color:white;
+
+
 }
