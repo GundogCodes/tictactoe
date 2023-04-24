@@ -14,21 +14,23 @@ body {
 .display{
     display: inline-flex;
 }
-
+header{
+    position: relative;
+}
 #board{
     display: grid;
-    grid-template-columns: repeat(3,20vmin);
-    grid-template-rows: repeat(3,20vmin);
+    grid-template-columns: repeat(3,15vmin);
+    grid-template-rows: repeat(3,15vmin);
     background-color:#003049;
-    gap:1vmin;
-    margin:2vmin;
+    gap:0.5vmin;
+    margin:1vmin;
     
    
 }
 
 #board > div{
-    height: 20vmin;
-    width: 20vmin;
+    height: 15vmin;
+    width: 15vmin;
     border-style: groove;
     border-radius: 5%;
     border-width: 0.3vmin;
@@ -54,24 +56,7 @@ button:hover{
 }
 
 
-#boxEl > h1 {
-    text-align: center;
-    font-size: 9vmin;
-    font-family: 'Bruno Ace', cursive;
 
-   
-}
-
-#boxEl > h1:hover{
-    position: center;
-    padding-bottom: 50px;
-    text-align: center;
-    transform:scale(2.2);
-    transition: 150ms ease-in;
-    font-family: 'Bruno Ace', cursive;
-    
-   
-}
 
 #message{
     font-size: 4vmin;
@@ -80,13 +65,16 @@ button:hover{
     font-family: 'Bruno Ace', cursive;
 }
 h1{
-    font-size: 10vmin;
+    position: relative;
+    font-size: 7vmin;
+  
 }
 span{
     color:white;
 }
 
 #tic{
+    
     color:#D62828
 }
 #tac{
@@ -98,39 +86,81 @@ span{
 }
 
 #tic:hover{
-    font-size: 5rem;
-    transition: 500ms;
+    font-size: 12vmin;
+    transition: 800ms ease-in;
   
 }
 
 #tac:hover{
-    font-size: 5rem;
-    transition: 500ms;
+    font-size: 12vmin;
+    transition: 800ms;
   
 }
 
 #toe:hover{
-    font-size: 5rem;
-    transition: 500ms;
+    font-size: 12vmin;
+    transition: 600ms;
   
 }
 
 p{
+   
     text-align: center;
     font-size: 5vmin;
 }
+p:hover{
+    
+    transition: 800ms ease-in-out;
+    color:blue;
+}
 
 #xPointsDiv{
-    padding: 15vmin;
+    padding: 10vmin;
     display: inline;
     color:white;
     
     
 }
 #oPointsDiv{
-    padding: 15vmin;
+    padding: 10vmin;
     display: inline;
     color:white;
 
 
+}
+
+#message:hover{
+    cursor: pointer;
+    font-size: 5vmin;
+    transition: 140ms;
+}
+
+#xPointsHeader{
+    font-size: 3vmin;
+    padding-right: 2vmin;
+}
+
+#oPointsHeader{
+    font-size: 3vmin;
+    padding-left: 2vmin;
+}
+
+#board > div > h1{
+    text-align: center;
+    font-size: 7vmin;
+  
+
+
+}
+
+
+#board >div > h1:hover{
+    position: center;
+    padding-bottom: 50px;
+    text-align: center;
+    transform:scale(1.5);
+ 
+    font-family: 'Bruno Ace', cursive;
+    
+   
 }

@@ -91,14 +91,20 @@
 		rowIdx = parseInt(rowIdx)
 		turn = parseInt(turn)
 		winner = getWinner(colIdx,rowIdx,turn)
+		
 		console.log('Winner is:',winner,'!!')
 		turn = turn *-1
+		
 		renderMessage(winner)
 		if(winner === undefined){
-			return
+			winner = checkForTie()
+			console.log('should be T',winner)
+			renderMessage(winner)
+			
+		
 		} else if(winner === 1){
 			xPoints ++
-		
+			
 			clearBoard()
 			
 		} else if (winner ===-1){
@@ -191,11 +197,26 @@
 		return count
 		
 	}
-
+	function checkForTie(){
+		let boxFilled = 0
+		board.forEach(function(colArr){
+			colArr.forEach(function(rowVal){
+				if (rowVal === 1 || rowVal ===-1){
+					boxFilled++
+				}
+			})
+		})
+		console.log('All boxes filled?',boxFilled)
+		if(boxFilled ===9){
+			winner = 'T'
+		}
+		return winner
+	}
 	function renderMessage(winner){
 		
 		if(winner === 'T'){
 			messageEl.innerText = "IT's A TIE!!!"
+			clearBoard()
 		} else if (winner === 1 || winner === -1){
 			messageEl.innerHTML = `${PLAYERS[winner].toUpperCase()} WINS!`
 			if(winner === 1){
@@ -270,5 +291,7 @@
 		//	r0 r1 r2
 		]
 	}
+
+
 
 //THE END
