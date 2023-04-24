@@ -52,7 +52,7 @@ button:hover{
 }
 
 
-#boxEl > h1{
+#boxEl > h1 {
     text-align: center;
     font-size: 9vmin;
     font-family: 'Bruno Ace', cursive;
