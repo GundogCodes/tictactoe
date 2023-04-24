@@ -1,3 +1,5 @@
+	//TicTacToe
+	//Gunish Sharma
 	/*----- constants -----*/
 
 	const PLAYERS = {
@@ -68,6 +70,7 @@
 		
 	}
 
+
 	function handleClick(e){
 		//update board
 		const clickedBox = e.currentTarget.getAttribute('id')
@@ -90,15 +93,23 @@
 		winner = getWinner(colIdx,rowIdx,turn)
 		console.log('Winner is:',winner,'!!')
 		turn = turn *-1
+		renderMessage(winner)
 		if(winner === undefined){
 			return
 		} else if(winner === 1){
 			xPoints ++
+		
+			clearBoard()
+			
 		} else if (winner ===-1){
 			oPoints ++
+		
+			clearBoard()
+			
 		}
+		
 		renderPoints(xPoints,oPoints)
-		renderMessage(winner)
+		
 		renderControls()
 	
 	}
@@ -204,7 +215,7 @@
 	}
 
 	function renderControls(){
-		playAgainBtn.style.visibility = winner ? 'visible':  'hidden'
+		playAgainBtn.style.visibility = gameWinner ? 'visible':  'hidden'
 	}
 
 	function renderBoard(){
@@ -228,11 +239,36 @@
 	}
 
 	function renderPoints(xPoints,oPoints){
+		console.log('The Points are XPoints: ',xPoints,'OPoints: ', oPoints)
 		xPointsEl.style.color = xColor
 		xPointsEl.innerHTML = xPoints
 		
 		oPointsEl.innerHTML = oPoints
 		oPointsEl.style.color = oColor
+		if(xPoints ===3 || oPoints ===3){
+			gameWinner = true
+			renderControls()
+		}
 		
 	}
 
+	function clearBoard(){
+		board.forEach(function(colArr,colIdx){
+			colArr.forEach(function(rowVal,rowIdx){
+				rowVal = 0
+				const boxId = `c${colIdx}r${rowIdx}`
+				const boxEl = document.getElementById(boxId)
+				boxEl.innerHTML = ``
+				
+
+			})
+		})
+		board = [
+			[0,0,0], //column 0
+			[0,0,0], //column 1
+			[0,0,0] //column 2
+		//	r0 r1 r2
+		]
+	}
+
+//THE END
